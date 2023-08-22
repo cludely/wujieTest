@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.el-container {
+  width: 100%;
+  height: 100%;
+}
+.el-container.is-vertical {
+
+}
+
+.el-header {
+
+}
+
+.el-aside {
+  
+}
+
+.el-main {
+
+}
+
+.el-footer {
+
+}
+

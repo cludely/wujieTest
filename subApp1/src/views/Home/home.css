@@ -1,0 +1,23 @@
+.home {
+  /* color: green; */
+}
+
+.title {
+  color: green;
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.reslove {
+  color: blue;
+  margin-top: 30px;
+  /* margin-bottom: 30px; */
+}
+
+.test6 {
+  width: 200px;
+  height: 150px;
+  background: url('@/assets/image/time.jpg') no-repeat center center;
+  background-size: 100% 100%;
+}
