@@ -51,3 +51,9 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 
 </script>
+
+<style lang="css" scoped>
+::v-deep.el-menu {
+  border: none;
+}
+</style>
