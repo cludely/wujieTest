@@ -72,6 +72,9 @@
         <el-row class="title">
           <el-col :span="24">本地存储</el-col>
         </el-row>
+        <el-row>
+          子应用与主应用同域
+        </el-row>
       </el-col>
     </el-row>
 
@@ -230,7 +233,7 @@
   </main>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { ElMessage, ElMessageBox, ElNotification, ElButton, 
   ElHeader, ElContainer, ElFooter, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup, ElSubMenu, ElPopconfirm,
   ElRow, ElCol, ElDialog, ElRadio, ElDrawer, ElOption, ElSelect, ElDatePicker, ElPopover, ElTooltip } from 'element-plus'
@@ -250,7 +253,6 @@ import timeJPG from '@/assets/image/time.jpg'
 import PNG from '@/assets/image/2.png'
 // const timeJPG = '../../src/assets/image/time.jpg'
 // const PNG = '../../src/assets/image/2.png'
-
 const url = ref(timeJPG)
 const togglePicture = () => {
   if(url.value == timeJPG) {
@@ -326,6 +328,13 @@ const showNotification = () => {
     type: 'success',
   })
 }
+
+
+onMounted(() => {
+  const localStorage: any = window?.__WUJIE_RAW_WINDOW__?.localStorage ?? window.localStorage
+  localStorage.setItem('test', 1)
+  localStorage.setItem('app1', 'app1')
+})
 </script>
 
 <style scoped>

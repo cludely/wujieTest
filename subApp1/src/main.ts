@@ -10,15 +10,6 @@ import './assets/main.css'
 
 import { isWujie } from '@/utils/index'
 
-
-localStorage.setItem('subVue3', 'subVue3')
-localStorage.setItem('hjj', '3')
-
-// const app = createApp(App)
-//   app.use(createPinia())
-//   app.use(router)
-//   app.mount("#app");
-
 if (isWujie()) {
   console.log('----无界环境----', window.$wujie.props)
   let app: any;

@@ -11,6 +11,7 @@ import WujieVue from "wujie-vue3";
 import lifecycles from "./lifecycles";
 const { setupApp, preloadApp, bus } = WujieVue;
 
+// 设置子应用的默认配置
 // setupApp({
 //   name: "subapp1",
 //   url: "http://10.0.32.118:5174/",
@@ -23,13 +24,14 @@ const { setupApp, preloadApp, bus } = WujieVue;
 //   ...lifecycles,
 // });
 
+localStorage.setItem('test', 2)
+localStorage.setItem('main', 'main')
+
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(WujieVue)
 
-localStorage.setItem('hjj', '2')
-localStorage.setItem('hjj2', 'aaaa')
 
 app.mount('#app')
