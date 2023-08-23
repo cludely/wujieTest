@@ -25,15 +25,17 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Setting, Location } from '@element-plus/icons-vue'
-import { routes } from '@/router/index.ts'
+import { routes } from '@/router/index'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
-console.log(route)
 const active = ref(route.path)
+watch(() => route.path, (value) => {
+  active.value = value
+}, { immediate: true })
 
 const routesFilter = routes.filter((d: any) => d.path)
 
