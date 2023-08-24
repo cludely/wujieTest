@@ -7,8 +7,4 @@
 
 <style scoped>
 
-.about {
-  color: red;
-}
-
 </style>
