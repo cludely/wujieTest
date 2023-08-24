@@ -17,14 +17,14 @@
         <span>子应用2</span>
       </template>
     </el-menu-item>
-    <!-- <el-menu-item index="test" @click="menuItemClick($event, '/test')">
+    <el-menu-item index="aitraining" @click="menuItemClick($event, '/aitraining')">
       <template #title>
         <el-icon>
           <setting />
         </el-icon>
-        <span>测试</span>
+        <span>AI训练平台</span>
       </template>
-    </el-menu-item> -->
+    </el-menu-item>
   </el-menu>
 </template>
 

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import subapp1 from '@/views/subapp1.vue'
 import subapp2 from '@/views/subapp2.vue'
-import test from '@/views/test.vue'
+import aitraining from '@/views/aitraining.vue'
 
 
 const router = createRouter({
@@ -22,9 +22,9 @@ const router = createRouter({
       component: subapp2
     },
     {
-      path: '/test',
-      name: 'test',
-      component: test
+      path: '/aitraining',
+      name: 'aitraining',
+      component: aitraining
     },
   ]
 })
