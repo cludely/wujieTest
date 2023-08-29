@@ -14,13 +14,18 @@ const fetch = (url: string, options?: object) => {
 const plugins = [
   {
     cssLoader: (code: any, url: any, base: any) => {
-      // console.log("css-loader===>", url, code,);
       return code;
     },
   },
   {
     jsLoader: (code: any, url: any, base: any) => {
-      return code.replace(/(var)(\s)(.+)(\s)=/ig, "window.$3 =");
+      code = code.replace(/(var)(\s)(.+)(\s)=/ig, "window.$3 =")
+
+      // const blob = new Blob([`importScripts("${base + 'js/a.ts'}")`], {"type": 'application/javascript'});
+      // const blobUrl = window.URL.createObjectURL(blob);
+      // code = code.replace(/new(\s)Worker\(\"\/js\/a\.js\"\)/ig, `new Worker('${blobUrl}')`)
+
+      return code
     },
   },
   // {

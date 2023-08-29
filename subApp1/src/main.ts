@@ -11,7 +11,7 @@ import './assets/main.css'
 import { isWujie } from '@/utils/index'
 
 if (isWujie()) {
-  console.log('----无界环境----', window.$wujie.props)
+  console.log('----无界环境----', window)
   let app: any;
   window.__WUJIE_MOUNT = () => {
     app = createApp(App);

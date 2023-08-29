@@ -146,7 +146,7 @@
           <el-button type="primary" @click="test5">触发click事件</el-button>
         </el-row>
         <el-row class="resolve">
-          1、使用自定义变量保存e.target的引用，再在异步函数内部使用这个自定义变量<br/>
+          1、使用自定义变量保存e.target的引用，再在异步函数内部使用这个自定义变量<br />
           2、e.composedPath()[0]
         </el-row>
       </el-col>
@@ -163,11 +163,11 @@
         <el-row class="resolve">
           1、图片上传至CDN，css中直接引用CDN地址<br />
           2、将图片打包成base64<br />
-          3、使用css-loader plugins将相对地址代码替换成绝对地址<br/>
-          4、无界框架目前默认使用方案三自动处理<br/>
-          5、但测试结果是如果使用 unplugin-vue-components 或者 unplugin-element-plus 会使css-loader失效，导致图片获取不到？？？<br/>
-          如下：<br/>
-          main.ts：import 'element-plus/dist/index.css'<br/>
+          3、使用css-loader plugins将相对地址代码替换成绝对地址<br />
+          4、无界框架目前默认使用方案三自动处理<br />
+          5、但测试结果是如果使用 unplugin-vue-components 或者 unplugin-element-plus 会使css-loader失效，导致图片获取不到？？？<br />
+          如下：<br />
+          main.ts：import 'element-plus/dist/index.css'<br />
           Home.vue：import { ElButton } from 'element-plus'
         </el-row>
       </el-col>
@@ -202,7 +202,7 @@
           <el-col :span="24">第三方包已经引入，使用时报错</el-col>
         </el-row>
         <el-row class="resolve">
-          1、index.html<br/>
+          1、index.html<br />
           2、使用js-loader将var xxx = xxx替换为window.xxx = xxx
         </el-row>
       </el-col>
@@ -214,9 +214,9 @@
           <el-col :span="24">vite4 在单例模式下切换子应用导致样式丢失</el-col>
         </el-row>
         <el-row class="resolve">
-          <a href="https://github.com/Tencent/wujie/issues/434#issuecomment-1614089196">在单例模式下切换子应用导致样式丢失</a><br/>
-          1、使用patchElementHook插件修改insertAdjacentElement，可以解决样式丢失的问题，但element-plus的冒泡类组件会报错，导致应用加载不出来<br/>
-          2、使用patchElementHook插件可以解决子应用的自定义字体没有生效的问题<br/>
+          <a href="https://github.com/Tencent/wujie/issues/434#issuecomment-1614089196">在单例模式下切换子应用导致样式丢失</a><br />
+          1、使用patchElementHook插件修改insertAdjacentElement，可以解决样式丢失的问题，但element-plus的冒泡类组件会报错，导致应用加载不出来<br />
+          2、使用patchElementHook插件可以解决子应用的自定义字体没有生效的问题<br />
           3、使用保活模式
         </el-row>
       </el-col>
@@ -224,7 +224,34 @@
 
 
 
-    
+
+    <el-row style="margin: 30px 0;">
+      <el-col :span="24">
+        <el-row class="title">
+          <el-col :span="24">Worker</el-col>
+        </el-row>
+        <el-row>
+          <el-button type="primary" @click="loadFile">加载文件</el-button>
+        </el-row>
+        <el-row class="resolve">
+          <el-col>
+            1、动态加载的js文件不会经过js-loader处理<br />
+            2、worker只支持同源文件处理，且内部不能使用window、documen、localStorage等<br />
+            3、使用new Blob([importScripts()], {"type": 'application/javascript'});绕过同源限制<br />
+            4、但使用new Blob会造成<a href="https://www.coder.work/article/5770401">报错</a><br />
+            5、修改decoder-pro-audio.js中的源码：<br/>
+              <!-- fetch(c...改为fetch(location.protocol==="blob:"?location.origin+"/"+c:c...<br /> -->
+              <pre>
+                c="decoder-pro-audio.wasm"
+              </pre>
+              改为:<br />
+              <pre>
+                c=`${location.protocol==="blob:"?location.origin+'/':''}decoder-pro-audio.wasm`
+              </pre>
+          </el-col>
+        </el-row>
+      </el-col>
+    </el-row>
 
 
 
@@ -234,9 +261,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { ElMessage, ElMessageBox, ElNotification, ElButton, 
-  ElHeader, ElContainer, ElFooter, ElMain, ElMenu, ElMenuItem, ElMenuItemGroup, ElSubMenu, ElPopconfirm,
-  ElRow, ElCol, ElDialog, ElRadio, ElDrawer, ElOption, ElSelect, ElDatePicker, ElPopover, ElTooltip } from 'element-plus'
+import { ElMessage, ElMessageBox, ElNotification, ElButton, ElPopconfirm, ElRow, ElCol, ElDialog, ElRadio, ElDrawer, ElOption, ElSelect, ElDatePicker, ElPopover, ElTooltip } from 'element-plus'
 import { useCounterStore } from '@/stores/counter'
 
 const showDialog = ref(false)
@@ -255,7 +280,7 @@ import PNG from '@/assets/image/2.png'
 // const PNG = '../../src/assets/image/2.png'
 const url = ref(timeJPG)
 const togglePicture = () => {
-  if(url.value == timeJPG) {
+  if (url.value == timeJPG) {
     url.value = PNG
   } else {
     url.value = timeJPG
@@ -264,7 +289,7 @@ const togglePicture = () => {
 
 const pictureHtml = ref('')
 const addPicture = () => {
-  if(url.value == timeJPG) {
+  if (url.value == timeJPG) {
     pictureHtml.value = `<img src="${PNG}" style="width: 300px;height: 200px;" />`
   } else {
     pictureHtml.value = `<img src="${timeJPG}" style="width: 300px;height: 200px;" />`
@@ -281,7 +306,6 @@ const counterStore = useCounterStore()
 
 const test5 = (e: any) => {
   console.log(e, e.target)
-  // const target = e.target
   setTimeout(() => {
     const target = (e.target.shadowRoot && e.composed) ? (e.composedPath()[0] || e.target) : e.target
     console.log(target, e.composedPath())
@@ -293,6 +317,9 @@ const domHandle = (e: any) => {
   btn.style.transition = '1s'
   btn.style.transform = 'translateX(150px)'
 }
+
+const loadFile = window.loadFileFromImport
+// const loadFile = window.loadFileFromWorker
 
 const showMessage = () => {
   ElMessage({
@@ -328,7 +355,6 @@ const showNotification = () => {
     type: 'success',
   })
 }
-
 
 onMounted(() => {
   const localStorage: any = window?.__WUJIE_RAW_WINDOW__?.localStorage ?? window.localStorage

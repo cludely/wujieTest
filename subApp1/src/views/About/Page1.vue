@@ -19,7 +19,7 @@
     <el-row style="margin: 30px 0;">
       <el-col :span="24">
         <el-row class="title">
-          <el-col :span="24">布局优化</el-col>
+          <el-col :span="24">布局优化与样式统一、主题同步</el-col>
         </el-row>
         <el-row>
           height: window.__POWERED_BY_WUJIE__ ? '100%' : '100vh'<br/>

@@ -25,6 +25,14 @@
         <span>AI训练平台</span>
       </template>
     </el-menu-item>
+    <el-menu-item index="zhujianglng" @click="menuItemClick($event, '/zhujianglng')">
+      <template #title>
+        <el-icon>
+          <setting />
+        </el-icon>
+        <span>珠江lng</span>
+      </template>
+    </el-menu-item>
   </el-menu>
 </template>
 
