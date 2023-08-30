@@ -1,7 +1,6 @@
 <template>
   <main class="home">
     <h1 style="font-size: 30px;margin-bottom: 30px;">子应用1 Home页面</h1>
-
     <el-row style="margin: 30px 0;">
       <el-col :span="24">
         <el-row class="title">
@@ -64,6 +63,22 @@
           count: {{ counterStore.count }}&nbsp;&nbsp;&nbsp;&nbsp;doubleCount: {{ counterStore.doubleCount }}
         </el-row>
         <el-row class="resolve"></el-row>
+      </el-col>
+    </el-row>
+
+    <el-row style="margin: 30px 0;">
+      <el-col :span="24">
+        <el-row class="title">
+          <el-col :span="24">通信系统</el-col>
+        </el-row>
+        <el-row>发布订阅、函数引用</el-row>
+        <el-row>
+          <el-button type="primary" @click="on">开始监听on</el-button>
+          <el-button type="primary" @click="sendMessage">发送数据emit</el-button>
+          <el-button type="primary" @click="off">取消fsend事件监听off</el-button>
+          <el-button type="primary" @click="offAll">取消所有事件监听offAll</el-button>
+          <el-button type="primary" @click="clear">清空事件监听clear</el-button>
+        </el-row>
       </el-col>
     </el-row>
 
@@ -223,8 +238,6 @@
     </el-row>
 
 
-
-
     <el-row style="margin: 30px 0;">
       <el-col :span="24">
         <el-row class="title">
@@ -239,13 +252,13 @@
             2、worker只支持同源文件处理，且内部不能使用window、documen、localStorage等<br />
             3、使用new Blob([importScripts()], {"type": 'application/javascript'});绕过同源限制<br />
             4、但使用new Blob会造成<a href="https://www.coder.work/article/5770401">报错</a><br />
-            5、修改decoder-pro-audio.js中的源码：<br/>
-              <!-- fetch(c...改为fetch(location.protocol==="blob:"?location.origin+"/"+c:c...<br /> -->
-              <pre>
+            5、修改decoder-pro-audio.js中的源码：<br />
+            <!-- fetch(c...改为fetch(location.protocol==="blob:"?location.origin+"/"+c:c...<br /> -->
+            <pre>
                 c="decoder-pro-audio.wasm"
               </pre>
-              改为:<br />
-              <pre>
+            改为:<br />
+            <pre>
                 c=`${location.protocol==="blob:"?location.origin+'/':''}decoder-pro-audio.wasm`
               </pre>
           </el-col>
@@ -318,7 +331,7 @@ const domHandle = (e: any) => {
   btn.style.transform = 'translateX(150px)'
 }
 
-const loadFile = window.loadFileFromImport
+const loadFile: Function = window.loadFileFromImport as Function
 // const loadFile = window.loadFileFromWorker
 
 const showMessage = () => {
@@ -354,6 +367,28 @@ const showNotification = () => {
     message: '这是一条成功的消息通知',
     type: 'success',
   })
+}
+
+const eventBus: any = window.$wujie?.bus
+const eventHandle = (data: any) => {
+  console.log(data)
+}
+const on = () => {
+  eventBus.$on('fsend', eventHandle)
+}
+const off = () => {
+  eventBus.$off('fsend', eventHandle)
+}
+const offAll = () => {
+  eventBus.$offAll((...args: Array<any>) => {
+    console.log('取消监听所有事件===>', args)
+  })
+}
+const clear = () => {
+  eventBus.$clear()
+}
+const sendMessage = () => {
+  eventBus.$emit('fsend', '子应用发送数据')
 }
 
 onMounted(() => {

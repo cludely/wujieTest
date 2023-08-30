@@ -24,7 +24,7 @@ const { setupApp, preloadApp, bus } = WujieVue;
 //   ...lifecycles,
 // });
 
-localStorage.setItem('test', 2)
+localStorage.setItem('test', '2')
 localStorage.setItem('main', 'main')
 
 const app = createApp(App)
