@@ -14,9 +14,12 @@ const fetch = (url: string, options?: object) => {
 const plugins: Array<any> = [
   {
     jsLoader: (code: any, url: any, base: any) => {
-      const blob = new Blob([`importScripts("${base}decoder-pro-audio.js")`], {"type": 'application/javascript'});
-      const blobUrl = window.URL.createObjectURL(blob);
-      const script = `this.decoderWorker=new Worker('${blobUrl}')`
+      // const blob = new Blob([`importScripts("${base}decoder-pro-audio.js")`], {"type": 'application/javascript'});
+      // const blobUrl = window.URL.createObjectURL(blob);
+      // const script = `this.decoderWorker=new Worker('${blobUrl}')`
+      // code = code.replace(/this\.decoderWorker=new Worker\(t\)/ig, script);
+
+      const script = `this.decoderWorker=new Worker('${window.origin}/decoder-pro-audio.js')`
       code = code.replace(/this\.decoderWorker=new Worker\(t\)/ig, script);
 
       return code

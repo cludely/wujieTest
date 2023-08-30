@@ -261,6 +261,7 @@
             <pre>
                 c=`${location.protocol==="blob:"?location.origin+'/':''}decoder-pro-audio.wasm`
               </pre>
+            6、复制文件到主应用
           </el-col>
         </el-row>
       </el-col>
