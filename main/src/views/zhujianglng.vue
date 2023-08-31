@@ -19,9 +19,13 @@ const plugins: Array<any> = [
       // const script = `this.decoderWorker=new Worker('${blobUrl}')`
       // code = code.replace(/this\.decoderWorker=new Worker\(t\)/ig, script);
 
-      const script = `this.decoderWorker=new Worker('${window.origin}/decoder-pro-audio.js')`
-      code = code.replace(/this\.decoderWorker=new Worker\(t\)/ig, script);
+      // const script = `this.decoderWorker=new Worker('${window.origin}/decoder-pro-audio.js')`
+      // code = code.replace(/this\.decoderWorker=new Worker\(t\)/ig, script);
 
+      return code
+    },
+    htmlLoader: (code: any, url: any, base: any) => {
+      code = code.replace(/\.\/web-player-pro\.js/, `${window.origin}/web-player-pro.js`)
       return code
     },
   },

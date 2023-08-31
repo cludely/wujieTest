@@ -253,7 +253,6 @@
             3、使用new Blob([importScripts()], {"type": 'application/javascript'});绕过同源限制<br />
             4、但使用new Blob会造成<a href="https://www.coder.work/article/5770401">报错</a><br />
             5、修改decoder-pro-audio.js中的源码：<br />
-            <!-- fetch(c...改为fetch(location.protocol==="blob:"?location.origin+"/"+c:c...<br /> -->
             <pre>
                 c="decoder-pro-audio.wasm"
               </pre>
